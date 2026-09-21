@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Un detalle para ti ✨</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: radial-gradient(circle at bottom, #182333 0%, #07090e 100%);
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    /* Fondo con estrellas animadas */
+    .estrellas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .estrella {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: titilar 2.2s infinite ease-in-out alternate;
+    }
+
+    @keyframes titilar {
+      0% { opacity: 0.2; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.3); }
+    }
+
+    .contenedor {
+      z-index: 2;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .titulo {
+      font-family: 'Caveat', cursive;
+      font-size: 2.7rem;
+      color: #ffd700;
+      text-shadow: 0 0 16px rgba(255, 215, 0, 0.45);
+      margin-bottom: 20px;
+      animation: fadeIn 1.8s ease forwards;
+    }
+
+    /* Girasol animado */
+    .girasol-box {
+      position: relative;
+      width: 190px;
+      height: 250px;
+      margin-bottom: 25px;
+      animation: florCrecer 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .flor {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      margin: 0 auto;
+    }
+
+    .centro {
+      position: absolute;
+      width: 68px;
+      height: 68px;
+      background: #462201;
+      background-image: radial-gradient(#6e3b08 18%, transparent 19%), radial-gradient(#3a1b00 18%, transparent 19%);
+      background-size: 9px 9px;
+      border-radius: 50%;
+      top: 31px;
+      left: 31px;
+      z-index: 3;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.7), 0 0 12px rgba(0,0,0,0.3);
+    }
+
+    .petalos {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+
+    .petalo {
+      position: absolute;
+      width: 24px;
+      height: 64px;
+      background: linear-gradient(to top, #ff9500, #ffea00);
+      border-radius: 50% 50% 12% 12%;
+      top: 33px;
+      left: 53px;
+      transform-origin: center center;
+    }
+
+    .petalo:nth-child(1) { transform: rotate(0deg) translateY(-40px); }
+    .petalo:nth-child(2) { transform: rotate(30deg) translateY(-40px); }
+    .petalo:nth-child(3) { transform: rotate(60deg) translateY(-40px); }
+    .petalo:nth-child(4) { transform: rotate(90deg) translateY(-40px); }
+    .petalo:nth-child(5) { transform: rotate(120deg) translateY(-40px); }
+    .petalo:nth-child(6) { transform: rotate(150deg) translateY(-40px); }
+    .petalo:nth-child(7) { transform: rotate(180deg) translateY(-40px); }
+    .petalo:nth-child(8) { transform: rotate(210deg) translateY(-40px); }
+    .petalo:nth-child(9) { transform: rotate(240deg) translateY(-40px); }
+    .petalo:nth-child(10) { transform: rotate(270deg) translateY(-40px); }
+    .petalo:nth-child(11) { transform: rotate(300deg) translateY(-40px); }
+    .petalo:nth-child(12) { transform: rotate(330deg) translateY(-40px); }
+
+    .tallo {
+      position: absolute;
+      width: 8px;
+      height: 135px;
+      background: #2e7d32;
+      bottom: 0;
+      left: 91px;
+      border-radius: 4px;
+      z-index: 1;
+    }
+
+    .hoja {
+      position: absolute;
+      width: 36px;
+      height: 19px;
+      background: #388e3c;
+      border-radius: 0 50% 0 50%;
+      top: 155px;
+      left: 58px;
+      transform: rotate(-25deg);
+    }
+
+    .hoja.derecha {
+      left: 96px;
+      top: 175px;
+      border-radius: 50% 0 50% 0;
+      transform: rotate(25deg);
+    }
+
+    /* Botón de acción */
+    .btn-abrir {
+      background: linear-gradient(135deg, #ffd700, #ff9e00);
+      color: #1a1600;
+      border: none;
+      padding: 13px 32px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 22px rgba(255, 215, 0, 0.45);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-abrir:hover {
+      transform: scale(1.06);
+      box-shadow: 0 6px 28px rgba(255, 215, 0, 0.65);
+    }
+
+    /* Modal emergente */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .modal.activo {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .carta {
+      background: #fffdf6;
+      color: #333;
+      padding: 34px 26px 26px;
+      border-radius: 20px;
+      width: 88%;
+      max-width: 350px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+      position: relative;
+      text-align: center;
+      transform: translateY(25px);
+      transition: transform 0.35s ease;
+    }
+
+    .modal.activo .carta {
+      transform: translateY(0);
+    }
+
+    .icono-carta {
+      font-size: 2.3rem;
+      margin-bottom: 8px;
+    }
+
+    .carta h2 {
+      font-family: 'Caveat', cursive;
+      font-size: 2.2rem;
+      color: #d68700;
+      margin-bottom: 12px;
+    }
+
+    .carta p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #4a4a4a;
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .firma {
+      font-family: 'Caveat', cursive;
+      font-size: 1.35rem;
+      color: #b36e00;
+    }
+
+    .btn-cerrar {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #888;
+    }
+
+    @keyframes florCrecer {
+      0% { transform: scale(0.2); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-15px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="musica" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" loop></audio>
+
+  <div class="estrellas" id="estrellas"></div>
+
+  <div class="contenedor">
+    <h1 class="titulo">Para un gran amigo 🌻</h1>
+
+    <div class="girasol-box">
+      <div class="flor">
+        <div class="centro"></div>
+        <div class="petalos">
+          <div class="petalo"></div><div class="petalo"></div>
+          <div class="petalo"></div><div class="petalo"></div>
+          <div class="petalo"></div><div class="petalo"></div>
+          <div class="petalo"></div><div class="petalo"></div>
+          <div class="petalo"></div><div class="petalo"></div>
+          <div class="petalo"></div><div class="petalo"></div>
+        </div>
+      </div>
+      <div class="tallo"></div>
+      <div class="hoja"></div>
+      <div class="hoja derecha"></div>
+    </div>
+
+    <button id="btnAbrir" class="btn-abrir">Toca aquí ✨</button>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="carta">
+      <button id="btnCerrar" class="btn-cerrar">&times;</button>
+      <div class="icono-carta">🌻</div>
+      <h2>¡Para ti, bro!</h2>
+      <p>
+        Dicen que las flores amarillas son para dar buena energía y aprecio a las personas que valen la pena.<br><br>
+        Como nos conocemos desde hace años y siempre has estado firme, se me hizo chido mandarte tus flores amarillas para recordarte el gran aprecio que te tengo. ¡Gracias por la hermandad de siempre!
+      </p>
+      <div class="firma">¡Un abrazo, bro! ⚡</div>
+    </div>
+  </div>
+
+  <script>
+    // Estrellas titilando en el fondo
+    const estrellasContainer = document.getElementById('estrellas');
+    for (let i = 0; i < 35; i++) {
+      const estrella = document.createElement('div');
+      estrella.className = 'estrella';
+      const size = Math.random() * 3 + 1;
+      estrella.style.width = size + 'px';
+      estrella.style.height = size + 'px';
+      estrella.style.top = Math.random() * 100 + '%';
+      estrella.style.left = Math.random() * 100 + '%';
+      estrella.style.animationDelay = (Math.random() * 2) + 's';
+      estrellasContainer.appendChild(estrella);
+    }
+
+    // Modal y música
+    const btnAbrir = document.getElementById('btnAbrir');
+    const btnCerrar = document.getElementById('btnCerrar');
+    const modal = document.getElementById('modal');
+    const audio = document.getElementById('musica');
+
+    btnAbrir.addEventListener('click', () => {
+      modal.classList.add('activo');
+      audio.play().catch(() => {});
+    });
+
+    btnCerrar.addEventListener('click', () => {
+      modal.classList.remove('activo');
+    });
+
+    // Protección básica contra clic derecho e inspección
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) || (e.ctrlKey && e.key.toUpperCase() === 'U')) {
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
